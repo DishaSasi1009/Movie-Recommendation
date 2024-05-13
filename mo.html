@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="main">
+        <h1>Movie Recommendation System</h1>
+        <label for="genre">Select genre</label>
+        <select name="options" id="options" onchange="updateRecommendations()">
+            <option value="all">All</option>
+            <option value="comedy">Comedy</option>
+            <option value="drama">Drama</option>
+            <option value="action">Action</option>
+        </select> <br>
+        <div id="cont">
+        </div>
+    </div>
+</body>
+<script>
+    var movies = {
+        "all":["Shawshank redemption","The Dark Knight","Inception","The Hangover","Superbad","Forest Gump"],
+        "comedy": ["The Hangover", "Superbad"],
+        "drama": ["Shawshank Redemption", "Forest Gump"],
+        "action": ["The Dark Knight", "Inception"],
+    };
+
+    function updateRecommendations() {
+        var selectedGenre = document.getElementById("options").value;
+        var recommendations = movies[selectedGenre] || movies["all"];
+
+        var cont = document.getElementById("cont");
+        cont.innerHTML = "";
+
+        recommendations.forEach(function(movie) {
+            cont.innerHTML += '<p class="box"><b>' + movie +'</b><br>Genre: '+selectedGenre+'</p>';
+       
+        });
+      
+    }
+    updateRecommendations();
+</script>
+</html>
